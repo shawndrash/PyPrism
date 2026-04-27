@@ -1,0 +1,17 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>io.github.shawndrash.pyprism</id>
+
+    <!-- name, version, description, change-notes, idea-version are patched in from
+         gradle.properties / README.md / CHANGELOG.md by the IntelliJ Platform Gradle Plugin. -->
+
+    <vendor url="https://github.com/shawndrash/PyPrism">shawndrash</vendor>
+
+    <!-- Plugin dependencies. The plugin requires the Python plugin (bundled in PyCharm Professional). -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.python</depends>
+
+    <!-- Extension points will be registered in Phase 1. -->
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+</idea-plugin>

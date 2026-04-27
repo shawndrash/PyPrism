@@ -1,0 +1,9 @@
+.DS_Store
+.gradle
+.idea
+.intellijPlatform
+.kotlin
+build
+
+# Claude Code local agent state
+.claude/
