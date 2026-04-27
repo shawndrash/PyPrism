@@ -7,11 +7,17 @@
 
     <vendor url="https://github.com/shawndrash/PyPrism">shawndrash</vendor>
 
-    <!-- Plugin dependencies. The plugin requires the Python plugin (bundled in PyCharm Professional). -->
+    <!-- Plugin dependencies. The plugin requires the Python plugin (bundled in PyCharm Professional/Community). -->
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.python</depends>
 
-    <!-- Extension points will be registered in Phase 1. -->
+    <resource-bundle>messages.PyPrismBundle</resource-bundle>
+
     <extensions defaultExtensionNs="com.intellij">
+        <annotator
+            language="Python"
+            implementationClass="io.github.shawndrash.pyprism.annotator.PythonEnhancedAnnotator"/>
+        <colorSettingsPage
+            implementation="io.github.shawndrash.pyprism.colors.PythonEnhancedColorSettingsPage"/>
     </extensions>
 </idea-plugin>

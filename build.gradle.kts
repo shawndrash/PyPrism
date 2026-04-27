@@ -24,11 +24,22 @@ dependencies {
             IntelliJPlatformType.fromCode(providers.gradleProperty("platformType").get()),
             providers.gradleProperty("platformVersion").get(),
         )
+        // Python language support. Bundled in PyCharm Community/Professional under
+        // module ID "PythonCore"; required at compile time so we can reference
+        // com.jetbrains.python.psi.* classes from the annotator.
+        bundledPlugin("PythonCore")
         testFramework(TestFrameworkType.Platform)
     }
 }
 
 intellijPlatform {
+    // Skip building the searchable-options index. The task spawns a headless PyCharm
+    // that hangs on first-launch network calls (PyPI index, plugin marketplace icons).
+    // The plugin currently exposes a single ColorSettingsPage that users discover via
+    // Settings → Editor → Color Scheme → Python; the index gives no extra value here.
+    // Re-enable before publishing to Marketplace if Settings-search discoverability matters.
+    buildSearchableOptions = false
+
     pluginConfiguration {
         name = providers.gradleProperty("pluginName")
         version = providers.gradleProperty("pluginVersion")
