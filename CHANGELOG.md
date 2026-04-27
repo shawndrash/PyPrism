@@ -2,6 +2,19 @@
 
 ## [Unreleased]
 
+## [0.1.1]
+
+### Fixed
+
+- Built-in classes (`int`, `set`, `str`, `list`, `dict`, ...) are no longer
+  recoloured. Their references resolve to `PyClass` stubs in `builtins.pyi`,
+  which previously caused the annotator to override PyCharm's stock
+  `Builtin name` highlighting and made them visually indistinguishable from
+  user-defined classes. Detection uses `PyBuiltinCache.isBuiltin`. A
+  dedicated `BUILTIN_CLASS_REFERENCE` token is planned for a later release.
+
+## [0.1.0]
+
 ### Added
 
 - Initial project scaffolding based on `intellij-platform-plugin-template`.

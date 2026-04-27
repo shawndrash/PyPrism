@@ -66,4 +66,34 @@ class PythonEnhancedAnnotatorTest : BasePlatformTestCase() {
         // not a reference expression.
         assertEquals(emptyList<String>(), classReferenceTexts(source))
     }
+
+    fun testBuiltinClassesAreNotHighlighted() {
+        // int, set, str, list, dict are PyClass instances backed by builtins.pyi
+        // stubs. Annotating them would override PyCharm's stock `Builtin name` token,
+        // making them visually indistinguishable from user-defined classes. Leave
+        // them alone — a dedicated BUILTIN_CLASS_REFERENCE token is planned for a
+        // later release.
+        val source = """
+            x: int = 5
+            y = set()
+            s: str = "hi"
+            xs: list[int] = []
+            d: dict[str, int] = {}
+        """.trimIndent()
+
+        assertEquals(emptyList<String>(), classReferenceTexts(source))
+    }
+
+    fun testUserClassStillHighlightedAlongsideBuiltins() {
+        // Mixed scenario: builtins (int, list) co-exist with a user class (Foo).
+        // The user class should still light up; builtins should not.
+        val source = """
+            class Foo: pass
+            x: int = 5
+            xs: list[Foo] = []
+            f = Foo
+        """.trimIndent()
+
+        assertEquals(listOf("Foo", "Foo"), classReferenceTexts(source))
+    }
 }

@@ -6,6 +6,7 @@ import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.psi.PsiElement
 import com.jetbrains.python.psi.PyClass
 import com.jetbrains.python.psi.PyReferenceExpression
+import com.jetbrains.python.psi.impl.PyBuiltinCache
 import io.github.shawndrash.pyprism.colors.Colors
 
 /**
@@ -24,7 +25,15 @@ class PythonEnhancedAnnotator : Annotator {
         val resolved = element.reference.resolve() ?: return
 
         val attributesKey = when (resolved) {
-            is PyClass -> Colors.CLASS_REFERENCE
+            is PyClass -> {
+                // int, set, str, list, dict, ... are PyClass instances backed by
+                // builtins.pyi stubs. PyCharm's stock highlighter colours them via
+                // its own `Builtin name` token; overriding here would erase that
+                // distinction. A dedicated BUILTIN_CLASS_REFERENCE token is planned
+                // for a later release.
+                if (PyBuiltinCache.getInstance(resolved).isBuiltin(resolved)) return
+                Colors.CLASS_REFERENCE
+            }
             else -> return
         }
 
