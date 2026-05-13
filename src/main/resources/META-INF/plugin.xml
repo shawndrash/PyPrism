@@ -19,5 +19,11 @@
             implementationClass="io.github.shawndrash.pyprism.annotator.PythonEnhancedAnnotator"/>
         <colorSettingsPage
             implementation="io.github.shawndrash.pyprism.colors.PythonEnhancedColorSettingsPage"/>
+        <!-- Out-of-the-box default colours per base scheme. Users can still override
+             these in Settings → Editor → Color Scheme → Python. Without these,
+             PYTHON_ENHANCED_CLASS_REFERENCE falls back to CLASS_NAME, which is
+             visually identical to the stock class name token on Classic Light. -->
+        <additionalTextAttributes scheme="Default" file="colorSchemes/PyPrismDefault.xml"/>
+        <additionalTextAttributes scheme="Darcula" file="colorSchemes/PyPrismDarcula.xml"/>
     </extensions>
 </idea-plugin>

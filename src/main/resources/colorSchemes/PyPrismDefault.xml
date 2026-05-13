@@ -1,0 +1,12 @@
+<!--
+  Default attributes for PyPrism tokens on the IDE's "Default" (light) base scheme.
+  Inherited by Classic Light / IntelliJ Light unless they override these keys.
+  Users can still recolour these in Settings → Editor → Color Scheme → Python.
+-->
+<list>
+    <option name="PYTHON_ENHANCED_CLASS_REFERENCE">
+        <value>
+            <option name="FOREGROUND" value="0e7490"/>
+        </value>
+    </option>
+</list>

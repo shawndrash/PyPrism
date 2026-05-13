@@ -2,6 +2,18 @@
 
 ## [Unreleased]
 
+## [0.1.2]
+
+### Added
+
+- Out-of-the-box default colour for `PYTHON_ENHANCED_CLASS_REFERENCE`: teal
+  `#0E7490` on light schemes (Default / Classic Light / IntelliJ Light) and
+  `#5EEAD4` on dark schemes (Darcula / Dark / High contrast). Previously the
+  token fell back to `CLASS_NAME`, which on Classic Light produced no visible
+  difference from the stock class name token, leaving fresh installs looking
+  like the plugin did nothing. Users can still override these in
+  `Settings → Editor → Color Scheme → Python`.
+
 ## [0.1.1]
 
 ### Fixed
